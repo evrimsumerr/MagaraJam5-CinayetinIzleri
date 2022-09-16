@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using TMPro;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -32,8 +34,11 @@ public class EnemyAI : MonoBehaviour
     //public Transform player;
     public Vector3 enemyfirstlocation;
     public float delay = 1f;
+    float time = 0;
     //bool timer = true;
     //bool Isarrived = true;
+
+    public TextMeshProUGUI alert;
     // Start is called before the first frame update
     void Start()
     {
@@ -169,7 +174,8 @@ public class EnemyAI : MonoBehaviour
                 float dstToPlayer = Vector3.Distance(transform.position, player.position);          //  Distance of the enmy and the player
                 if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
                 {
-                    
+                    alert.color = Color.yellow;
+                    alert.gameObject.SetActive(true);
                     m_playerInRange = true;             //  The player has been seeing by the enemy and then the enemy starts to chasing the player
                     m_IsPatrol = false;                 //  Change the state to chasing the player
                 }
@@ -178,12 +184,13 @@ public class EnemyAI : MonoBehaviour
                     /*
                      *  If the player is behind a obstacle the player position will not be registered
                      * */
-
+                    
                     m_playerInRange = false;
                 }
             }
             else
             {
+                alert.gameObject.SetActive(false);
                 m_playerInRange = false;
             }
             if (Vector3.Distance(transform.position, player.position) > viewRadius )
@@ -197,6 +204,14 @@ public class EnemyAI : MonoBehaviour
 
             if (m_playerInRange)
             {
+                if (time<=2f)
+                {
+                    time+=Time.deltaTime;
+                }
+                else
+                {
+                    alert.color = Color.red;
+                }
                 /*
                  *  If the enemy no longer sees the player, then the enemy will go to the last position that has been registered
                  * */
@@ -205,6 +220,9 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
+                time = 0;
+                alert.color = Color.yellow;
+                alert.gameObject.SetActive(false);
                 m_IsPatrol = true;
             }
 
