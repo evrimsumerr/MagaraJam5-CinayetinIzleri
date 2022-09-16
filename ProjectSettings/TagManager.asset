@@ -5,7 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
+<<<<<<< Updated upstream
   - CanGrab
+=======
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -13,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Obstacle
   - 
   - 
   - 
