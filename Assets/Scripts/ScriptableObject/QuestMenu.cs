@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[CreateAssetMenu(fileName = "QuestMenu", menuName = "ScritableObject")]
 
-public class GameManager : GenericSingleton<GameManager>
+public class QuestMenu : ScriptableObject
 {
-    public int levelIndex = 1;
+    public List<GameObject> questMenu;
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }

@@ -36,7 +36,7 @@ public class QuestManager : GenericSingleton<QuestManager>
         }
         for (int i = 0; i < hidePlace.Count; i++)
         {
-            if (parent != null && parent.name == hidePlace[i].name)
+            if (parent != null && parent.name == hidePlace[i].name && objects[i].gameObject.name == collectableObj.name)
             {
                 GameObject bg = hidePlace[i].transform.GetChild(0).gameObject;
                 Debug.Log(bg);
