@@ -12,7 +12,7 @@ public class QuestManager : GenericSingleton<QuestManager>
     [SerializeField] List<GameObject> hidePlace;
     public override void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("PlayerCapsule");
     }
     void Update()
     {

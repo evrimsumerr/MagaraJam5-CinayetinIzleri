@@ -11,7 +11,6 @@ public class OuestSpawn : MonoBehaviour
         {
             if (GameManager.Instance.levelIndex - 1 == i)
             {
-                Debug.Log("aaaaaaa");
                 Instantiate(menu.questMenu[i]);
             }
         }
