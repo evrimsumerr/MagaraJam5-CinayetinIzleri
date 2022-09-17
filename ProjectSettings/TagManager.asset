@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - CanGrab
+  - Drawer
+  - HideObjects
+  - Objects
   layers:
   - Default
   - TransparentFX
