@@ -3,16 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.UI;
 
 public class UIManager : GenericSingleton<UIManager>
 {
     Canvas canvas;
     private int cooldownTimer;
+    private TextMeshProUGUI timerText;
 
     private void Start()
     {
         canvas = GameObject.Find("Canvas(Clone)").GetComponent<Canvas>();
+        timerText = canvas.transform.Find("TimerPanel").transform.Find("TimerText").GetComponent<TextMeshProUGUI>();
+    }
+
+    private void Update()
+    {
+        SetTimer();
     }
 
     public void OpenPickupPanel(bool open)
@@ -28,6 +36,11 @@ public class UIManager : GenericSingleton<UIManager>
     public void OpenPlacePanel(bool open)
     {
         canvas.transform.Find("PlacePanel").gameObject.SetActive(open);
+    }
+
+    void SetTimer()
+    {
+        timerText.text = GameManager.Instance.timer.ToString();
     }
     
     public IEnumerator CooldownTimerBehindWall()

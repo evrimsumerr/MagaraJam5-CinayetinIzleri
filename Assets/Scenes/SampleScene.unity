@@ -1837,6 +1837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelIndex: 1
+  timer: 300
 --- !u!1 &4315792605761580577
 GameObject:
   m_ObjectHideFlags: 0

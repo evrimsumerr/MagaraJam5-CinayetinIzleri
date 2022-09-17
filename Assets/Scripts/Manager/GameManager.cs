@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : GenericSingleton<GameManager>
 {
     public int levelIndex = 1;
+    public int timer = 300;
     bool isFinished;
     void Start()
     {
-
+        StartCoroutine(Timer());
     }
 
 
@@ -18,6 +19,20 @@ public class GameManager : GenericSingleton<GameManager>
         if (isFinished)
         {
             LevelLock.Instance.levelState[SceneManager.GetActiveScene().buildIndex - 1] = true;
+        }
+    }
+    
+    //timer coroutine
+    IEnumerator Timer()
+    {
+        while (timer > 0)
+        {
+            yield return new WaitForSeconds(1);
+            timer--;
+        }
+        if (timer == 0)
+        {
+            isFinished = true;
         }
     }
 }
