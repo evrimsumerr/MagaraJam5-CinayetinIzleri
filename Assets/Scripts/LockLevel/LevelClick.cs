@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class LevelClick : GenericSingleton<LevelClick>
 {
+    public GameObject selectLevel;
+    public int time;
     public int index;
     public List<Button> Items;
     string a;
@@ -20,6 +22,9 @@ public class LevelClick : GenericSingleton<LevelClick>
     }
     public void Select(Button button)
     {
+        selectLevel = button.gameObject;
+        time = selectLevel.GetComponent<LevelTime>().time;
+        PlayerPrefs.SetInt("Time", time);
         index = int.Parse(button.name);
     }
 }
