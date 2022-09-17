@@ -6,13 +6,13 @@ using TMPro;
 public class QuestManager : GenericSingleton<QuestManager>
 {
     GameObject player;
-    GameObject collectableObj;
+    public GameObject collectableObj;
     GameObject parent;
     [SerializeField] List<TextMeshProUGUI> objects;
     [SerializeField] List<GameObject> hidePlace;
     public override void Awake()
     {
-        player = GameObject.Find("PlayerCapsule");
+        player = GameObject.Find("EquipPosition");
     }
     void Update()
     {
