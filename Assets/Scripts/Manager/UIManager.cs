@@ -10,12 +10,24 @@ public class UIManager : GenericSingleton<UIManager>
 {
     Canvas canvas;
     private int cooldownTimer;
-    private TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerText;
+    public Transform mainMenuPanel;
+    public Transform settingsPanel;
+    public Transform timerPanel;
+    public Button resumeButton, settingsButton, mainMenuButton, exitButton;
 
     private void Start()
     {
         canvas = GameObject.Find("Canvas(Clone)").GetComponent<Canvas>();
-        timerText = canvas.transform.Find("TimerPanel").transform.Find("TimerText").GetComponent<TextMeshProUGUI>();
+        mainMenuPanel = canvas.transform.Find("MainMenuPanel");
+        timerPanel = canvas.transform.Find("TimerPanel");
+        resumeButton = mainMenuPanel.Find("Background").transform.Find("Resume").GetComponent<Button>();
+        settingsButton = mainMenuPanel.Find("Background").transform.Find("Settings").GetComponent<Button>();
+        mainMenuButton = mainMenuPanel.Find("Background").transform.Find("MainMenu").GetComponent<Button>();
+        exitButton = mainMenuPanel.Find("Background").transform.Find("ExitButton").GetComponent<Button>();
+        timerText = timerPanel.Find("TimerText").GetComponent<TextMeshProUGUI>();
+        settingsPanel = canvas.transform.Find("SettingsPanel");
+        resumeButton.onClick.AddListener(SettingMenuClose);
     }
 
     private void Update()
@@ -28,9 +40,10 @@ public class UIManager : GenericSingleton<UIManager>
         canvas.transform.Find("PickupPanel").gameObject.SetActive(open);
     }
 
-    public void OpenDrawer(bool open)
+    public void OpenDrawer(bool open, string text)
     {
         canvas.transform.Find("OpenPanel").gameObject.SetActive(open);
+        canvas.transform.Find("OpenPanel").transform.Find("Image").transform.Find("OpenCloseText").GetComponent<TextMeshProUGUI>().text = text;
     }
     
     public void OpenPlacePanel(bool open)
@@ -54,5 +67,16 @@ public class UIManager : GenericSingleton<UIManager>
             cooldownTimer--;
         }
         cooldownText.text = "";
+    }
+    
+    public void SettingMenuOpen()
+    {
+        mainMenuPanel.gameObject.SetActive(true);
+        mainMenuPanel.localPosition = new Vector2(0, -Screen.height);
+        mainMenuPanel.LeanMoveLocalY(0, 1f).setEaseOutExpo();
+    }
+    public void SettingMenuClose()
+    {
+        mainMenuPanel.LeanMoveLocalY(-Screen.height, 1f).setEaseInExpo().setOnComplete(() => { mainMenuPanel.gameObject.SetActive(false); });
     }
 }
