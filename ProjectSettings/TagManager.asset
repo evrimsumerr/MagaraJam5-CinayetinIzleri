@@ -10,6 +10,8 @@ TagManager:
   - DrawerOpen
   - HideObjects
   - Objects
+  - Door
+  - OpenDoor
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ public class GameManager : GenericSingleton<GameManager>
     {
         timer = PlayerPrefs.GetInt("Time");
         StartCoroutine(Timer());
+        SoundManager.Instance.PlayGeneralSound();
     }
 
 
@@ -20,6 +21,12 @@ public class GameManager : GenericSingleton<GameManager>
         if (isFinished)
         {
             LevelLock.Instance.levelState[SceneManager.GetActiveScene().buildIndex - 1] = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.Instance.SettingMenuOpen();
+            Cursor.visible = true;
         }
     }
     

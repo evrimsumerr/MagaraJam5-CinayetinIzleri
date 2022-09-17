@@ -71,15 +71,16 @@ public class PickUp : MonoBehaviour
     {
         if (openableObject.gameObject.tag == "Drawer")
         {
-            openableObject.LeanMoveX(openableObject.transform.position.x + 0.28f, 1f).setEaseInExpo();
+            openableObject.LeanMoveX(openableObject.transform.position.x + 0.28f, 0.7f).setEaseInExpo();
             openableObject.tag = "DrawerOpen";
+            SoundManager.Instance.PlaySound(1);
         }
         else if (openableObject.gameObject.tag == "DrawerOpen")
         {
-            openableObject.LeanMoveX(openableObject.transform.position.x - 0.28f, 1f).setEaseInExpo();
+            openableObject.LeanMoveX(openableObject.transform.position.x - 0.28f, 0.7f).setEaseInExpo();
             openableObject.tag = "Drawer";
+            SoundManager.Instance.PlaySound(2);
         }
-        
     }
 
     void PlaceObject()
@@ -113,18 +114,18 @@ public class PickUp : MonoBehaviour
         {
             if (hit.transform.tag == "Drawer" || hit.transform.tag == "DrawerOpen")
             {
-                UIManager.Instance.OpenDrawer(true);
+                UIManager.Instance.OpenDrawer(true, hit.transform.tag == "Drawer" ? "Open" : "Close");
                 canOpen = true;
                 openableObject = hit.transform.gameObject;
             }
         }
         else
         {
-            UIManager.Instance.OpenDrawer(false);
+            UIManager.Instance.OpenDrawer(false, "");
             canOpen = false;
             openableObject = null;
         }
-        
+
         if (Physics.Raycast(Camera.main.transform.position, playerCamera.forward, out hit, distance, 1 << 10))
         {
             if (hit.transform.tag == "HideObjects" && currentObject != null)
