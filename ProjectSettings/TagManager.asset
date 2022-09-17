@@ -8,6 +8,8 @@ TagManager:
   - CanGrab
   - Drawer
   - DrawerOpen
+  - HideObjects
+  - Objects
   layers:
   - Default
   - TransparentFX

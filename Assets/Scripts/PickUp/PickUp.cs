@@ -119,6 +119,13 @@ public class PickUp : MonoBehaviour
         currentObject.transform.parent = null;
         currentObject.GetComponent<Rigidbody>().isKinematic = false;
         currentObject = null;
-        QuestManager.Instance.collectableObj = null;
+        //if (QuestManager.Instance.collectableObj.transform.parent != null)
+        //{
+        //    QuestManager.Instance.collectableObj.transform.parent = null;
+        //}
+        //if (QuestManager.Instance.check != null && QuestManager.Instance.collectableObj.transform.parent == null)
+        //{
+        //    QuestManager.Instance.check.SetActive(false);
+        //}
     }
 }
