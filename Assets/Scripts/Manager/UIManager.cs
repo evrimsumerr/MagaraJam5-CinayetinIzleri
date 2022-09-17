@@ -18,13 +18,14 @@ public class UIManager : GenericSingleton<UIManager>
 
     private void Start()
     {
+        Cursor.visible = false;
         canvas = GameObject.Find("Canvas(Clone)").GetComponent<Canvas>();
         mainMenuPanel = canvas.transform.Find("MainMenuPanel");
         timerPanel = canvas.transform.Find("TimerPanel");
         resumeButton = mainMenuPanel.Find("Background").transform.Find("Resume").GetComponent<Button>();
         settingsButton = mainMenuPanel.Find("Background").transform.Find("Settings").GetComponent<Button>();
         mainMenuButton = mainMenuPanel.Find("Background").transform.Find("MainMenu").GetComponent<Button>();
-        exitButton = mainMenuPanel.Find("Background").transform.Find("ExitButton").GetComponent<Button>();
+        exitButton = mainMenuPanel.Find("Background").transform.Find("Exit").GetComponent<Button>();
         timerText = timerPanel.Find("TimerText").GetComponent<TextMeshProUGUI>();
         settingsPanel = canvas.transform.Find("SettingsPanel");
         resumeButton.onClick.AddListener(SettingMenuClose);
@@ -71,12 +72,14 @@ public class UIManager : GenericSingleton<UIManager>
     
     public void SettingMenuOpen()
     {
+        Cursor.visible = true;
         mainMenuPanel.gameObject.SetActive(true);
         mainMenuPanel.localPosition = new Vector2(0, -Screen.height);
         mainMenuPanel.LeanMoveLocalY(0, 1f).setEaseOutExpo();
     }
     public void SettingMenuClose()
     {
+        Cursor.visible = false;
         mainMenuPanel.LeanMoveLocalY(-Screen.height, 1f).setEaseInExpo().setOnComplete(() => { mainMenuPanel.gameObject.SetActive(false); });
     }
 }
