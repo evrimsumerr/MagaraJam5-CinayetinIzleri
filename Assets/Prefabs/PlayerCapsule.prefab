@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416311562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41, y: 0, z: 0.68}
+  m_LocalPosition: {x: 0.41, y: -0.21, z: 0.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -144,7 +144,9 @@ MonoBehaviour:
   equipPos: {fileID: 1416311563}
   distance: 2
   playerCamera: {fileID: 7366781659525348611}
-  canGrab: 0
+  openableObject: {fileID: 0}
+  canGrap: 0
+  canOpen: 0
 --- !u!4 &7366781659525348611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135013735270702856, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}

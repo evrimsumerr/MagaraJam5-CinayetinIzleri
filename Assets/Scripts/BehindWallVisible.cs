@@ -27,6 +27,7 @@ public class BehindWallVisible : MonoBehaviour
 
     IEnumerator CoolDown()
     {
+        StartCoroutine(UIManager.Instance.CooldownTimerBehindWall());
         yield return new WaitForSeconds(15f);
         isCanAbility = true;
     }
