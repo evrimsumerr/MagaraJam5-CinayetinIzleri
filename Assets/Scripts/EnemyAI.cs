@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using TMPro;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : GenericSingleton<EnemyAI>
 {
     NavMeshAgent navMeshAgent;               //  Nav mesh agent component
     public float startWaitTime = 4;                 //  Wait time of every action
@@ -210,6 +210,7 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
+                    UIManager.Instance.GameOver(true);
                     alert.color = Color.red;
                 }
                 /*

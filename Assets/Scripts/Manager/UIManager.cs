@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : GenericSingleton<UIManager>
 {
@@ -54,5 +55,22 @@ public class UIManager : GenericSingleton<UIManager>
             cooldownTimer--;
         }
         cooldownText.text = "";
+    }
+    public void GameOver(bool open)
+    {   
+        canvas.transform.Find("GameOverPanel").gameObject.SetActive(open);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("restart");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
