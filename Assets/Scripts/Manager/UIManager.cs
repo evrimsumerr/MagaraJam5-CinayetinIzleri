@@ -25,6 +25,11 @@ public class UIManager : GenericSingleton<UIManager>
         canvas.transform.Find("OpenPanel").gameObject.SetActive(open);
     }
     
+    public void OpenPlacePanel(bool open)
+    {
+        canvas.transform.Find("PlacePanel").gameObject.SetActive(open);
+    }
+    
     public IEnumerator CooldownTimerBehindWall()
     {
         cooldownTimer = 15;
