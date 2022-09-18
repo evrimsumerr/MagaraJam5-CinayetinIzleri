@@ -37,7 +37,10 @@ public class UIManager : MonoBehaviour
         settingsButton = mainMenuPanel.Find("Background").transform.Find("Settings").GetComponent<Button>();
         mainMenuButton = mainMenuPanel.Find("Background").transform.Find("MainMenu").GetComponent<Button>();
         exitButton = mainMenuPanel.Find("Background").transform.Find("Exit").GetComponent<Button>();
-        timerText = timerPanel.Find("TimerText").GetComponent<TextMeshProUGUI>();
+        if (timerPanel != null)
+        {
+            timerText = timerPanel.Find("TimerText").GetComponent<TextMeshProUGUI>();
+        }
         settingsPanel = mainMenuPanel.transform.Find("SettingsMenu");
         resumeButton.onClick.AddListener(SettingMenuClose);
         settingsButton.onClick.AddListener(SettingsOpen);
@@ -45,7 +48,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameOverPanel.activeSelf)
+        if (gameOverPanel != null && gameOverPanel.activeSelf)
         {
             Cursor.visible = true;
             Time.timeScale = 0;
@@ -81,7 +84,10 @@ public class UIManager : MonoBehaviour
 
     void SetTimer()
     {
-        timerText.text = GameManager.Instance.timer.ToString();
+        if (timerText != null)
+        {
+            timerText.text = GameManager.Instance.timer.ToString();
+        }
     }
     
     public IEnumerator CooldownTimerBehindWall()

@@ -29,7 +29,7 @@ public class QuestManager : GenericSingleton<QuestManager>
         //}
         for (int i = 0; i < objects.Count; i++)
         {
-            if (player.transform.childCount > 0 && objects[i].gameObject.name == collectableObj.name)
+            if (player != null && player.transform.childCount > 0 && objects[i].gameObject.name == collectableObj.name)
             {
                 GameObject bg = objects[i].transform.GetChild(objects[i].transform.childCount - 1).gameObject;
                 check = bg.transform.GetChild(0).gameObject;

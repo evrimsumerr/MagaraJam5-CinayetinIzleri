@@ -12,6 +12,8 @@ TagManager:
   - Objects
   - Door
   - OpenDoor
+  - Read
+  - Level
   layers:
   - Default
   - TransparentFX
