@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
         Cursor.visible = false;
         player.GetComponent<StarterAssetsInputs>().cursorInputForLook = true;
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        canvas.transform.Find("GameOverPanel").gameObject.SetActive(false);
         mainMenuPanel = canvas.transform.Find("MainMenuPanel");
         timerPanel = canvas.transform.Find("TimerPanel");
         resumeButton = mainMenuPanel.Find("Background").transform.Find("Resume").GetComponent<Button>();
@@ -111,6 +112,7 @@ public class UIManager : MonoBehaviour
     }
     public void Restart()
     {
+        canvas.transform.Find("GameOverPanel").gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         SoundManager.Instance.PlayGeneralSound();
         Debug.Log("restart");
@@ -118,7 +120,7 @@ public class UIManager : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
 
     }
     public void SettingMenuOpen()

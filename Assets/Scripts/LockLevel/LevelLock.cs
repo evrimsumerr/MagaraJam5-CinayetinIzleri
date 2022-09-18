@@ -27,7 +27,7 @@ public class LevelLock : MonoBehaviour
         {
             if (i == LevelClick.Instance.index)
             {
-                SceneManager.LoadScene(LevelClick.Instance.index + 1);
+                SceneManager.LoadScene(LevelClick.Instance.index + 3);
             }
         }
     }

@@ -9,7 +9,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] Transform equipPos;
     [SerializeField] float distance;
     [SerializeField] Transform playerCamera;
-    GameObject currentObject; 
+    public GameObject currentObject; 
     GameObject openableObject; 
     GameObject placeObject;
     GameObject obj;

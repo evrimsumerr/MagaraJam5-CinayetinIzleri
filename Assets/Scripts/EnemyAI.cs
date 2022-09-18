@@ -35,6 +35,7 @@ public class EnemyAI : MonoBehaviour
     public Vector3 enemyfirstlocation;
     public float delay = 1f;
     float time = 0;
+    PickUp pickUp;
 
     private Animator animator;
     //bool timer = true;
@@ -44,6 +45,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pickUp=FindObjectOfType<PickUp>();
         m_PlayerPosition = Vector3.zero;
         m_IsPatrol = true;
         m_playerInRange = false;
@@ -205,7 +207,7 @@ public class EnemyAI : MonoBehaviour
                 m_playerInRange = false;                //  Change the sate of chasing
             }
 
-            if (m_playerInRange)
+            if (m_playerInRange&&!(pickUp.currentObject==null))
             {
                 if(!SoundManager.Instance.audioSource.isPlaying)
                     SoundManager.Instance.PlaySound(0);
