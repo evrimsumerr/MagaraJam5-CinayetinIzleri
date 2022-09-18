@@ -43,4 +43,5 @@ public class GameManager : GenericSingleton<GameManager>
             isFinished = true;
         }
     }
+    
 }
