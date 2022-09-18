@@ -32413,7 +32413,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 610975689}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
@@ -59996,7 +59996,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 610975689}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -83354,6 +83354,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1455065701563614120, guid: 74656fe1fa8f56a4ea254abb1ac1d464, type: 3}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 4941101350153779486}
     - target: {fileID: 1455065701563614121, guid: 74656fe1fa8f56a4ea254abb1ac1d464, type: 3}
       propertyPath: m_Name
       value: UIManager
