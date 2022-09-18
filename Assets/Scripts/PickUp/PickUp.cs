@@ -153,10 +153,17 @@ public class PickUp : MonoBehaviour
     void PickingUp()
     {
         currentObject = obj;
-        currentObject.transform.position = equipPos.position;
-        currentObject.transform.parent = equipPos;
-        currentObject.transform.localEulerAngles = new Vector3(-90, 0, -120);
-        currentObject.GetComponent<Rigidbody>().isKinematic = true;
+        if (currentObject.name == "Not")
+        {
+            Read.instance.text.gameObject.SetActive(true);
+        }
+        else
+        {
+            currentObject.transform.position = equipPos.position;
+            currentObject.transform.parent = equipPos;
+            currentObject.transform.localEulerAngles = new Vector3(-90, 0, -120);
+            currentObject.GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
     void Drop()
     {
@@ -164,6 +171,10 @@ public class PickUp : MonoBehaviour
         //{
         //    currentObject.transform.position = new Vector3(placeObject.transform.position.x, placeObject.transform.position.y + 1f, placeObject.transform.position.z);
         //}
+        if (currentObject.name == "Not")
+        {
+            Read.instance.text.gameObject.SetActive(false);
+        }
         currentObject.transform.parent = null;
         currentObject.GetComponent<Rigidbody>().isKinematic = false;
         currentObject = null;
