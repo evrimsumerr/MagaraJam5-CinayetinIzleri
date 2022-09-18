@@ -13,15 +13,16 @@ public class Read : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        if (PlayerPrefs.GetString("First") == "True")
+        {
+            SceneManager.LoadScene(2);
+        }
     }
     void Start()
     {
+        Debug.Log(PlayerPrefs.GetString("First"));
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            if (PlayerPrefs.GetString("First") == "true")
-            {
-                SceneManager.LoadScene(2);
-            }
             firstScreen = true;
             PlayerPrefs.SetString("First", firstScreen.ToString());
         }
