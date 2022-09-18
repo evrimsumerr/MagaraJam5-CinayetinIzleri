@@ -20,7 +20,7 @@ public class BehindWallVisible : MonoBehaviour
     IEnumerator BehindWallVisibleCoroutine() 
     {
         behindWallVisibleBody.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         behindWallVisibleBody.gameObject.SetActive(false);
         StartCoroutine(CoolDown());
     }

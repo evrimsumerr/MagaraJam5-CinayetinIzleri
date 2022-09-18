@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using TMPro;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : GenericSingleton<EnemyAI>
 {
     NavMeshAgent navMeshAgent;               //  Nav mesh agent component
     public float startWaitTime = 4;                 //  Wait time of every action
@@ -204,18 +204,22 @@ public class EnemyAI : MonoBehaviour
 
             if (m_playerInRange)
             {
-                if (time<=2f)
+                if(!SoundManager.Instance.audioSource.isPlaying)
+                    SoundManager.Instance.PlaySound(0);
+                if (time<=3f)
                 {
                     time+=Time.deltaTime;
                 }
                 else
                 {
+                    UIManager.Instance.GameOver(true);
+                    
                     alert.color = Color.red;
                 }
                 /*
                  *  If the enemy no longer sees the player, then the enemy will go to the last position that has been registered
                  * */
-                m_PlayerPosition = player.transform.position;       //  Save the player's current position if the player is in range of vision
+                m_PlayerPosition = player.transform.position; //  Save the player's current position if the player is in range of vision
                 Stop();
             }
             else
@@ -224,6 +228,8 @@ public class EnemyAI : MonoBehaviour
                 alert.color = Color.yellow;
                 alert.gameObject.SetActive(false);
                 m_IsPatrol = true;
+                if(SoundManager.Instance.audioSource.isPlaying)
+                    SoundManager.Instance.StopSound();
             }
 
 

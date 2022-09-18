@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : GenericSingleton<GameManager>
 {
     public int levelIndex = 1;
+    public int timer;
     bool isFinished;
     void Start()
     {
-
+        timer = PlayerPrefs.GetInt("Time");
+        StartCoroutine(Timer());
+        SoundManager.Instance.PlayGeneralSound();
     }
 
 
@@ -19,5 +22,26 @@ public class GameManager : GenericSingleton<GameManager>
         {
             LevelLock.Instance.levelState[SceneManager.GetActiveScene().buildIndex - 1] = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.Instance.SettingMenuOpen();
+            //Cursor.visible = true;
+        }
     }
+    
+    //timer coroutine
+    IEnumerator Timer()
+    {
+        while (timer > 0)
+        {
+            yield return new WaitForSeconds(1);
+            timer--;
+        }
+        if (timer == 0)
+        {
+            isFinished = true;
+        }
+    }
+    
 }

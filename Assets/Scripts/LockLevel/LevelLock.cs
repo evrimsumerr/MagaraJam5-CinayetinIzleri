@@ -20,9 +20,9 @@ public class LevelLock : GenericSingleton<LevelLock>
     {
         for (int i = 0; i < levelState.Count; i++)
         {
-            if (levelState[i] == true && i == LevelClick.Instance.index)
+            if (i == LevelClick.Instance.index)
             {
-                SceneManager.LoadScene(LevelClick.Instance.index);
+                SceneManager.LoadScene(LevelClick.Instance.index + 1);
             }
         }
     }

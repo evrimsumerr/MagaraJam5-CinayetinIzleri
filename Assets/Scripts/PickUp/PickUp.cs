@@ -10,10 +10,12 @@ public class PickUp : MonoBehaviour
     [SerializeField] float distance;
     [SerializeField] Transform playerCamera;
     GameObject currentObject; 
-    [SerializeField]GameObject openableObject;
+    GameObject openableObject; 
+    GameObject placeObject;
     GameObject obj;
     [SerializeField]bool canGrap;
     [SerializeField]bool canOpen;
+    [SerializeField] bool canPlace;
     
 
     // Update is called once per frame
@@ -46,6 +48,16 @@ public class PickUp : MonoBehaviour
                 }
             }
         }
+        if (canPlace)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (placeObject != null)
+                {
+                    PlaceObject();
+                }
+            }
+        }
         if (currentObject != null)
         {
             if (Input.GetKeyDown(KeyCode.Q))
@@ -59,15 +71,24 @@ public class PickUp : MonoBehaviour
     {
         if (openableObject.gameObject.tag == "Drawer")
         {
-            openableObject.LeanMoveX(openableObject.transform.position.x + 0.28f, 1f).setEaseInExpo();
+            openableObject.LeanMoveX(openableObject.transform.position.x + 0.28f, 0.7f).setEaseInExpo();
             openableObject.tag = "DrawerOpen";
+            SoundManager.Instance.PlaySound(1);
         }
         else if (openableObject.gameObject.tag == "DrawerOpen")
         {
-            openableObject.LeanMoveX(openableObject.transform.position.x - 0.28f, 1f).setEaseInExpo();
+            openableObject.LeanMoveX(openableObject.transform.position.x - 0.28f, 0.7f).setEaseInExpo();
             openableObject.tag = "Drawer";
+            SoundManager.Instance.PlaySound(2);
         }
-        
+    }
+
+    void PlaceObject()
+    {
+        currentObject.transform.position = new Vector3(placeObject.transform.position.x, placeObject.transform.position.y + 1f, placeObject.transform.position.z);
+        currentObject.transform.parent = null;
+        currentObject.GetComponent<Rigidbody>().isKinematic = false;
+        currentObject = null;
     }
 
     void CheckObjects()
@@ -93,16 +114,32 @@ public class PickUp : MonoBehaviour
         {
             if (hit.transform.tag == "Drawer" || hit.transform.tag == "DrawerOpen")
             {
-                UIManager.Instance.OpenDrawer(true);
+                UIManager.Instance.OpenDrawer(true, hit.transform.tag == "Drawer" ? "Open" : "Close");
                 canOpen = true;
                 openableObject = hit.transform.gameObject;
             }
         }
         else
         {
-            UIManager.Instance.OpenDrawer(false);
+            UIManager.Instance.OpenDrawer(false, "");
             canOpen = false;
             openableObject = null;
+        }
+
+        if (Physics.Raycast(Camera.main.transform.position, playerCamera.forward, out hit, distance, 1 << 10))
+        {
+            if (hit.transform.tag == "HideObjects" && currentObject != null)
+            {
+                UIManager.Instance.OpenPlacePanel(true);
+                canPlace = true;
+                placeObject = hit.transform.gameObject;
+            }
+        }
+        else
+        {
+            UIManager.Instance.OpenPlacePanel(false);
+            canPlace = false;
+            placeObject = null;
         }
         
     }
