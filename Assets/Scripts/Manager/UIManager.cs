@@ -20,7 +20,7 @@ public class UIManager : GenericSingleton<UIManager>
     private void Start()
     {
         Cursor.visible = false;
-        canvas = GameObject.Find("Canvas(Clone)").GetComponent<Canvas>();
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         mainMenuPanel = canvas.transform.Find("MainMenuPanel");
         timerPanel = canvas.transform.Find("TimerPanel");
         resumeButton = mainMenuPanel.Find("Background").transform.Find("Resume").GetComponent<Button>();
