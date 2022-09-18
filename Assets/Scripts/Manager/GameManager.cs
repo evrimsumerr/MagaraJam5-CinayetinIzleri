@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : GenericSingleton<GameManager>
+public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public int levelIndex = 1;
     public int timer;
     bool isFinished;
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         timer = PlayerPrefs.GetInt("Time");

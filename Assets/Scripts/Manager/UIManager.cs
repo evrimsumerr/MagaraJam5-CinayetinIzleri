@@ -7,8 +7,9 @@ using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UIManager : GenericSingleton<UIManager>
+public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
     Canvas canvas;
     private int cooldownTimer;
     public TextMeshProUGUI timerText;
@@ -16,6 +17,10 @@ public class UIManager : GenericSingleton<UIManager>
     public Transform settingsPanel;
     public Transform timerPanel;
     public Button resumeButton, settingsButton, mainMenuButton, exitButton;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -28,12 +33,22 @@ public class UIManager : GenericSingleton<UIManager>
         mainMenuButton = mainMenuPanel.Find("Background").transform.Find("MainMenu").GetComponent<Button>();
         exitButton = mainMenuPanel.Find("Background").transform.Find("Exit").GetComponent<Button>();
         timerText = timerPanel.Find("TimerText").GetComponent<TextMeshProUGUI>();
-        settingsPanel = canvas.transform.Find("SettingsPanel");
+        settingsPanel = mainMenuPanel.transform.Find("SettingsMenu");
         resumeButton.onClick.AddListener(SettingMenuClose);
+        settingsButton.onClick.AddListener(SettingsOpen);
     }
 
     private void Update()
     {
+        if (!mainMenuPanel.gameObject.activeSelf)
+        {
+            settingsPanel.gameObject.SetActive(false);
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+        }
         SetTimer();
     }
 
@@ -73,7 +88,7 @@ public class UIManager : GenericSingleton<UIManager>
     public void GameOver(bool open)
     {   
         canvas.transform.Find("GameOverPanel").gameObject.SetActive(open);
-        Cursor.visible = true;
+        //Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         
     }
@@ -94,6 +109,9 @@ public class UIManager : GenericSingleton<UIManager>
         Cursor.visible = true;
         if (!mainMenuPanel.gameObject.activeSelf)
         {
+            settingsButton.gameObject.SetActive(true);
+            mainMenuButton.gameObject.SetActive(true);
+            exitButton.gameObject.SetActive(true);
             mainMenuPanel.gameObject.SetActive(true);
             mainMenuPanel.localPosition = new Vector2(0, -Screen.height);
             mainMenuPanel.LeanMoveLocalY(0, 1f).setEaseOutExpo();
@@ -101,8 +119,17 @@ public class UIManager : GenericSingleton<UIManager>
     }
     public void SettingMenuClose()
     {
-        Cursor.visible = false;
         mainMenuPanel.LeanMoveLocalY(-Screen.height, 1f).setEaseInExpo().setOnComplete(() => { mainMenuPanel.gameObject.SetActive(false); });
     }
-    
+    public void SettingsOpen()
+    {
+        settingsButton.gameObject.SetActive(false);
+        mainMenuButton.gameObject.SetActive(false);
+        exitButton.gameObject.SetActive(false);
+        settingsPanel.gameObject.SetActive(true);
+    }
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

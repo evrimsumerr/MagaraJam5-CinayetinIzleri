@@ -1576,6 +1576,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86d66212c0fc48458027fbdf152146e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &610975689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1455065701563614120, guid: 74656fe1fa8f56a4ea254abb1ac1d464, type: 3}
+  m_PrefabInstance: {fileID: 8860790762459318073}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484145409cae88c4d866e5402a707926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &616702878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,7 +2788,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 939699748}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610975689}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &986007679
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,7 +4036,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1415026988}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610975689}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1415026988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5020,6 +5055,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 463050131, guid: 987d8e2a9efcfd8419c5a84edbd9e427, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2558567381301157605, guid: 987d8e2a9efcfd8419c5a84edbd9e427, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -27116,6 +27155,10 @@ PrefabInstance:
     - target: {fileID: 2348602305294958790, guid: b03a0b1b1e3cfb44aa95c51ecb12d281, type: 3}
       propertyPath: m_Name
       value: GeneralAudioSource
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348602305294958791, guid: b03a0b1b1e3cfb44aa95c51ecb12d281, type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b03a0b1b1e3cfb44aa95c51ecb12d281, type: 3}
@@ -50164,9 +50207,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5048776943652641804, guid: 36ac6f7857547494b98dd1ef6fa15b29, type: 3}
+      propertyPath: slide
+      value: 
+      objectReference: {fileID: 1634842602573209699}
+    - target: {fileID: 5048776943652641804, guid: 36ac6f7857547494b98dd1ef6fa15b29, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 463050131}
+    - target: {fileID: 5048776943652641804, guid: 36ac6f7857547494b98dd1ef6fa15b29, type: 3}
+      propertyPath: slideEffect
+      value: 
+      objectReference: {fileID: 6195951748392729520}
+    - target: {fileID: 5048776943652641804, guid: 36ac6f7857547494b98dd1ef6fa15b29, type: 3}
+      propertyPath: slideGeneral
+      value: 
+      objectReference: {fileID: 8578218194318511394}
     - target: {fileID: 5048776943652641804, guid: 36ac6f7857547494b98dd1ef6fa15b29, type: 3}
       propertyPath: generalAudioSource
       value: 
@@ -62829,7 +62884,7 @@ RectTransform:
   m_Children:
   - {fileID: 6444674811638366111}
   m_Father: {fileID: 6444674811580377935}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -62965,7 +63020,7 @@ RectTransform:
   m_Children:
   - {fileID: 6444674812404372345}
   m_Father: {fileID: 6444674813474994622}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -86820,6 +86875,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
