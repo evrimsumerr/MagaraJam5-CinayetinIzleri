@@ -85,7 +85,7 @@ public class PickUp : MonoBehaviour
 
     void PlaceObject()
     {
-        if (QuestManager.Instance.check != null)
+        if (QuestManager.Instance.check != null && QuestManager.Instance.checkObj == null)
         {
             QuestManager.Instance.check.SetActive(false);
         }

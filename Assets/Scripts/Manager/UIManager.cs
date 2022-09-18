@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public Transform settingsPanel;
     public Transform timerPanel;
     public Button resumeButton, settingsButton, mainMenuButton, exitButton;
+    public GameObject gameOverPanel;
     private void Awake()
     {
         player = GameObject.Find("PlayerCapsule");
@@ -44,6 +45,12 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        if (gameOverPanel.activeSelf)
+        {
+            Cursor.visible = true;
+            Time.timeScale = 0;
+            player.GetComponent<StarterAssetsInputs>().cursorInputForLook = false;
+        }
         if (!mainMenuPanel.gameObject.activeSelf)
         {
             settingsPanel.gameObject.SetActive(false);
@@ -111,7 +118,7 @@ public class UIManager : MonoBehaviour
     public void SettingMenuOpen()
     {
         Cursor.visible = true;
-        if (!mainMenuPanel.gameObject.activeSelf)
+        if (!mainMenuPanel.gameObject.activeSelf && !gameOverPanel.activeSelf)
         {
             player.GetComponent<StarterAssetsInputs>().cursorInputForLook = false;
             settingsButton.gameObject.SetActive(true);
