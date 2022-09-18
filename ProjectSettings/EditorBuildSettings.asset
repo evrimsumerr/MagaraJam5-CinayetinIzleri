@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/StreetScene.unity
+    guid: 79883be4df2db0543a29d6f04902805a
+  - enabled: 1
     path: Assets/Scenes/StreetLevelScene.unity
     guid: 30abc48b4b044634da2f6e595b146892
   - enabled: 1

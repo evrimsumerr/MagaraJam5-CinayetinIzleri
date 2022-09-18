@@ -6,9 +6,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using StarterAssets;
 public class UIManager : MonoBehaviour
 {
+    GameObject player;
     public static UIManager Instance;
     Canvas canvas;
     private int cooldownTimer;
@@ -17,14 +18,18 @@ public class UIManager : MonoBehaviour
     public Transform settingsPanel;
     public Transform timerPanel;
     public Button resumeButton, settingsButton, mainMenuButton, exitButton;
+    public GameObject gameOverPanel;
     private void Awake()
     {
+        player = GameObject.Find("PlayerCapsule");
         Instance = this;
     }
 
     private void Start()
     {
+        Time.timeScale = 1;
         Cursor.visible = false;
+        player.GetComponent<StarterAssetsInputs>().cursorInputForLook = true;
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         mainMenuPanel = canvas.transform.Find("MainMenuPanel");
         timerPanel = canvas.transform.Find("TimerPanel");
@@ -40,6 +45,12 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        if (gameOverPanel.activeSelf)
+        {
+            Cursor.visible = true;
+            Time.timeScale = 0;
+            player.GetComponent<StarterAssetsInputs>().cursorInputForLook = false;
+        }
         if (!mainMenuPanel.gameObject.activeSelf)
         {
             settingsPanel.gameObject.SetActive(false);
@@ -107,19 +118,23 @@ public class UIManager : MonoBehaviour
     public void SettingMenuOpen()
     {
         Cursor.visible = true;
-        if (!mainMenuPanel.gameObject.activeSelf)
+        if (!mainMenuPanel.gameObject.activeSelf && !gameOverPanel.activeSelf)
         {
+            player.GetComponent<StarterAssetsInputs>().cursorInputForLook = false;
             settingsButton.gameObject.SetActive(true);
             mainMenuButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
             mainMenuPanel.gameObject.SetActive(true);
-            mainMenuPanel.localPosition = new Vector2(0, -Screen.height);
-            mainMenuPanel.LeanMoveLocalY(0, 1f).setEaseOutExpo();
+            //mainMenuPanel.localPosition = new Vector2(0, -Screen.height);
+            //mainMenuPanel.LeanMoveLocalY(0, 1f).setEaseOutExpo();
         }
     }
     public void SettingMenuClose()
     {
-        mainMenuPanel.LeanMoveLocalY(-Screen.height, 1f).setEaseInExpo().setOnComplete(() => { mainMenuPanel.gameObject.SetActive(false); });
+        player.GetComponent<StarterAssetsInputs>().cursorInputForLook = true;
+        Time.timeScale = 1;
+        mainMenuPanel.gameObject.SetActive(false);
+        //mainMenuPanel.LeanMoveLocalY(-Screen.height, 1f).setEaseInExpo().setOnComplete(() => { mainMenuPanel.gameObject.SetActive(false); });
     }
     public void SettingsOpen()
     {

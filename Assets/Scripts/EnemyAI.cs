@@ -65,11 +65,11 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision
+
         if (m_IsPatrol)
         {
             Patroling();
         }
-       
     }
     private void Patroling()
     {
