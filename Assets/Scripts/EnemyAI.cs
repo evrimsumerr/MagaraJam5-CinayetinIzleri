@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using TMPro;
 
-public class EnemyAI : GenericSingleton<EnemyAI>
+public class EnemyAI : MonoBehaviour
 {
     NavMeshAgent navMeshAgent;               //  Nav mesh agent component
     public float startWaitTime = 4;                 //  Wait time of every action
@@ -35,6 +35,8 @@ public class EnemyAI : GenericSingleton<EnemyAI>
     public Vector3 enemyfirstlocation;
     public float delay = 1f;
     float time = 0;
+
+    private Animator animator;
     //bool timer = true;
     //bool Isarrived = true;
 
@@ -48,8 +50,9 @@ public class EnemyAI : GenericSingleton<EnemyAI>
         m_PlayerNear = false;
         m_WaitTime = startWaitTime;
         m_TimeToRotate = timeToRotate;
+        animator = GetComponent<Animator>();
 
-        m_CurrentWaypointIndex = 0;                 //  Set the initial waypoint
+        m_CurrentWaypointIndex = Random.Range(0, waypoints.Length);                 //  Set the initial waypoint
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
@@ -111,7 +114,7 @@ public class EnemyAI : GenericSingleton<EnemyAI>
 
     public void NextPoint()
     {
-        m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+        m_CurrentWaypointIndex = Random.Range(0, waypoints.Length);
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
     }
     //public void NextRotation()
@@ -123,14 +126,14 @@ public class EnemyAI : GenericSingleton<EnemyAI>
 
     void Stop()
     {
-        //animator.SetBool("IsWalk", false);
+        animator.SetBool("isWalk", false);
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
     }
 
     void Move(float speed)
     {
-        //animator.SetBool("IsWalk", true);
+        animator.SetBool("isWalk", true);
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
     }
@@ -213,6 +216,7 @@ public class EnemyAI : GenericSingleton<EnemyAI>
                 else
                 {
                     UIManager.Instance.GameOver(true);
+                    animator.SetBool("isAim", true);
                     
                     alert.color = Color.red;
                 }
