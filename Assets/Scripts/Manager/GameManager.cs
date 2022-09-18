@@ -26,7 +26,7 @@ public class GameManager : GenericSingleton<GameManager>
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             UIManager.Instance.SettingMenuOpen();
-            Cursor.visible = true;
+            //Cursor.visible = true;
         }
     }
     
