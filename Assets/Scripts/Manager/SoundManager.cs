@@ -2,18 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SoundManager : GenericSingleton<SoundManager>
+public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance;
     public AudioSource audioSource;
     public AudioSource generalAudioSource;
     public AudioClip[] audioClips;
     public AudioClip[] generalAudioClips;
+    public Slider slideGeneral;
+    public Slider slideEffect;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void PlaySound(int index)
     {
         audioSource.clip = audioClips[index];
         audioSource.Play();
+    }
+    public void Update()
+    {
+        generalAudioSource.volume = slideGeneral.value;
+        audioSource.volume = slideEffect.value;
     }
 
     public void PlayGeneralSound()

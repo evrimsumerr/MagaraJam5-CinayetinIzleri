@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLock : GenericSingleton<LevelLock>
+public class LevelLock : MonoBehaviour
 {
+    public static LevelLock Instance;
     public List<bool> levelState;
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         
