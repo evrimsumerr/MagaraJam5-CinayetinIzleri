@@ -31,7 +31,7 @@ public class QuestManager : GenericSingleton<QuestManager>
         {
             if (player.transform.childCount > 0 && objects[i].gameObject.name == collectableObj.name)
             {
-                GameObject bg = objects[i].transform.GetChild(0).gameObject;
+                GameObject bg = objects[i].transform.GetChild(objects[i].transform.childCount - 1).gameObject;
                 check = bg.transform.GetChild(0).gameObject;
                 check.SetActive(true);
             }
@@ -44,19 +44,16 @@ public class QuestManager : GenericSingleton<QuestManager>
         {
             var obj = collectableObj.transform.parent;
             parent = obj.gameObject;
-            Debug.Log(parent.name);
-            Debug.Log(hidePlace[i].name);
-            Debug.Log(objects[i].gameObject.name);
-            Debug.Log(collectableObj.name);
             if (parent != null && parent.name == hidePlace[i].name && objects[i].gameObject.name == collectableObj.name)
             {
-                //Debug.Log(objects[i].gameObject.name);
-                GameObject bg = hidePlace[i].transform.GetChild(0).gameObject;
-                Debug.Log(bg);
+                GameObject bg = hidePlace[i].transform.GetChild(hidePlace[i].transform.childCount - 1).gameObject;
                 checkObj = bg.transform.GetChild(0).gameObject;
-                Debug.Log(checkObj);
+                Debug.Log(check);
                 check.SetActive(true);
                 checkObj.SetActive(true);
+                collectableObj.tag = "Untagged";
+                collectableObj.layer = 0;
+                collectableObj.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
     }

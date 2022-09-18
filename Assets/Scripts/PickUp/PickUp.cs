@@ -85,10 +85,17 @@ public class PickUp : MonoBehaviour
 
     void PlaceObject()
     {
-        currentObject.transform.position = new Vector3(placeObject.transform.position.x, placeObject.transform.position.y + 1f, placeObject.transform.position.z);
-        currentObject.transform.parent = null;
-        currentObject.GetComponent<Rigidbody>().isKinematic = false;
-        currentObject = null;
+        if (QuestManager.Instance.check != null)
+        {
+            QuestManager.Instance.check.SetActive(false);
+        }
+        if (currentObject != null)
+        {
+            currentObject.transform.position = new Vector3(placeObject.transform.position.x, placeObject.transform.position.y + 1f, placeObject.transform.position.z);
+            currentObject.transform.parent = null;
+            currentObject.GetComponent<Rigidbody>().isKinematic = false;
+            currentObject = null;
+        }
     }
 
     void CheckObjects()
@@ -153,6 +160,10 @@ public class PickUp : MonoBehaviour
     }
     void Drop()
     {
+        //if (placeObject != null)
+        //{
+        //    currentObject.transform.position = new Vector3(placeObject.transform.position.x, placeObject.transform.position.y + 1f, placeObject.transform.position.z);
+        //}
         currentObject.transform.parent = null;
         currentObject.GetComponent<Rigidbody>().isKinematic = false;
         currentObject = null;
@@ -160,9 +171,9 @@ public class PickUp : MonoBehaviour
         //{
         //    QuestManager.Instance.collectableObj.transform.parent = null;
         //}
-        //if (QuestManager.Instance.check != null && QuestManager.Instance.collectableObj.transform.parent == null)
-        //{
-        //    QuestManager.Instance.check.SetActive(false);
-        //}
+        if (QuestManager.Instance.check != null && QuestManager.Instance.collectableObj.transform.parent == null)
+        {
+            QuestManager.Instance.check.SetActive(false);
+        }
     }
 }
