@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LevelClick : MonoBehaviour
 {
     public static LevelClick Instance;
+    public Transform levelSelected1, levelSelected2;
     public GameObject selectLevel;
     public int time;
     public int index;
@@ -23,6 +24,16 @@ public class LevelClick : MonoBehaviour
     }
     public void Select(Button button)
     {
+        if (button.name == "0")
+        {
+            levelSelected1.gameObject.SetActive(true);
+            levelSelected2.gameObject.SetActive(false);
+        }
+        if (button.name == "1")
+        {
+            levelSelected1.gameObject.SetActive(false);
+            levelSelected2.gameObject.SetActive(true);
+        }
         selectLevel = button.gameObject;
         time = selectLevel.GetComponent<LevelTime>().time;
         PlayerPrefs.SetInt("Time", time);

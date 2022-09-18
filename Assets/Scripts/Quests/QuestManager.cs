@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class QuestManager : GenericSingleton<QuestManager>
+public class QuestManager : MonoBehaviour
 {
+    public static QuestManager Instance;
     GameObject player;
     public GameObject collectableObj;
     public GameObject check;
@@ -12,8 +13,9 @@ public class QuestManager : GenericSingleton<QuestManager>
     GameObject parent;
     [SerializeField] List<TextMeshProUGUI> objects;
     [SerializeField] List<GameObject> hidePlace;
-    public override void Awake()
+    public void Awake()
     {
+        Instance = this;
         player = GameObject.Find("EquipPosition");
     }
     void Update()

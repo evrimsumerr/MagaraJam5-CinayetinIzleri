@@ -17,13 +17,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        var canvas = GameObject.Find("Canvas");
-        SettingsPanel = canvas.transform.Find("SettingsPanel");
-        CreditsPanel = canvas.transform.Find("CreditsPanel");
-        LevelPanel = canvas.transform.Find("LevelPanel");
-        PlayButton = canvas.transform.Find("PlayButton").GetComponent<Button>();
-        background = canvas.transform.Find("Background");
-        backgroundNoText = canvas.transform.Find("BackgroundNoText");
+        Cursor.visible = true;
+        Screen.lockCursor = false;
         audioSource.clip = audioClip;
         effectSource.clip = effectClip;
         audioSource.Play();

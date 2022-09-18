@@ -64,6 +64,9 @@ public class UIManager : MonoBehaviour
         {
             Cursor.visible = true;
         }
+
+        if (gameOverPanel.gameObject.activeSelf)
+            Cursor.visible = true;
         SetTimer();
     }
 
@@ -105,17 +108,18 @@ public class UIManager : MonoBehaviour
     }
     public void GameOver(bool open)
     {   
+        player.GetComponent<StarterAssetsInputs>().cursorInputForLook = false;
+        Cursor.visible = true;
+        Screen.lockCursor = false;
         canvas.transform.Find("GameOverPanel").gameObject.SetActive(open);
         //Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
         
     }
     public void Restart()
     {
-        canvas.transform.Find("GameOverPanel").gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        canvas.transform.Find("GameOverPanel").gameObject.SetActive(false);
         SoundManager.Instance.PlayGeneralSound();
-        Debug.Log("restart");
     }
 
     public void MainMenu()
