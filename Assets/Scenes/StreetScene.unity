@@ -19187,6 +19187,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2a1796459c6f3a14c87f4739e5d9c3dd, type: 3}
   - {fileID: 8300000, guid: ae570999d4c3658429192fd03f5835d7, type: 3}
   - {fileID: 8300000, guid: fb9d53eda0335ec4ba0e9a964e33dbb8, type: 3}
+  slideGeneral: {fileID: 0}
+  slideEffect: {fileID: 0}
 --- !u!4 &735323483278846831
 Transform:
   m_ObjectHideFlags: 0
@@ -25539,8 +25541,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373088012808383017}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.49830198, y: 0.18842101, z: 14.210013}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -10.37, y: 0.18842101, z: 14.210013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25548,7 +25550,7 @@ Transform:
   - {fileID: 3333264723410091580}
   m_Father: {fileID: 0}
   m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &1749410190828585358
 Transform:
   m_ObjectHideFlags: 0
@@ -46088,8 +46090,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4623044988869841428}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49830198, y: 1.888421, z: 14.210013}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -10.37, y: 1.888421, z: 14.210013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58460,7 +58462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6434731535313646403}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.49830198, y: 1.888421, z: 14.210013}
+  m_LocalPosition: {x: -10.37, y: 1.888421, z: 14.210013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -75510,7 +75512,7 @@ RectTransform:
   m_Children:
   - {fileID: 8809232208830660042}
   m_Father: {fileID: 8809232207913290523}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -78786,6 +78788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 1
   timer: 300
+  isRunning: 1
 --- !u!1 &8958065860652536383
 GameObject:
   m_ObjectHideFlags: 0

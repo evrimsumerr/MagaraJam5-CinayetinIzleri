@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int levelIndex = 1;
     public int timer;
     bool isFinished;
+    public bool isRunning = true;
     private void Awake()
     {
         Instance = this;
@@ -30,7 +31,10 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GameManager.Instance.isRunning = false;
             UIManager.Instance.SettingMenuOpen();
+            //StartCoroutine(Stop());
+            Time.timeScale = 0;
             //Cursor.visible = true;
         }
     }
@@ -42,11 +46,23 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             timer--;
+
+            //if (isRunning)
+            //{
+            //    //yield return new WaitForSeconds(1);
+            //    timer--;
+            //}
+            //yield return new WaitForSeconds(1);
+            //timer--;
         }
         if (timer == 0)
         {
             isFinished = true;
         }
     }
-    
+    IEnumerator Stop()
+    {
+        yield return new WaitForSeconds(1.25f);
+        Time.timeScale = 0;
+    }
 }
