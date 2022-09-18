@@ -80,6 +80,7 @@ public class UIManager : GenericSingleton<UIManager>
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SoundManager.Instance.PlayGeneralSound();
         Debug.Log("restart");
     }
 
@@ -88,17 +89,20 @@ public class UIManager : GenericSingleton<UIManager>
         SceneManager.LoadScene(0);
 
     }
-        public void SettingMenuOpen()
+    public void SettingMenuOpen()
+    {
+        Cursor.visible = true;
+        if (!mainMenuPanel.gameObject.activeSelf)
         {
-            Cursor.visible = true;
             mainMenuPanel.gameObject.SetActive(true);
             mainMenuPanel.localPosition = new Vector2(0, -Screen.height);
             mainMenuPanel.LeanMoveLocalY(0, 1f).setEaseOutExpo();
         }
-        public void SettingMenuClose()
-        {
-            Cursor.visible = false;
-            mainMenuPanel.LeanMoveLocalY(-Screen.height, 1f).setEaseInExpo().setOnComplete(() => { mainMenuPanel.gameObject.SetActive(false); });
-        }
+    }
+    public void SettingMenuClose()
+    {
+        Cursor.visible = false;
+        mainMenuPanel.LeanMoveLocalY(-Screen.height, 1f).setEaseInExpo().setOnComplete(() => { mainMenuPanel.gameObject.SetActive(false); });
+    }
     
 }
