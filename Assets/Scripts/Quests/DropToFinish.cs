@@ -21,15 +21,15 @@ public class DropToFinish : MonoBehaviour
         {
             gameObject.transform.parent = collision.transform;
             QuestManager.Instance.Complete();
-            gameObject.tag = "Untagged";
-            gameObject.layer = 0;
-            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            //gameObject.tag = "Untagged";
+            //gameObject.layer = 0;
+            //gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
-        if (collision.gameObject.CompareTag("Objects") && QuestManager.Instance.check != null)
-        {
-            //QuestManager.Instance.Complete();
-            QuestManager.Instance.check.SetActive(false);
-        }
+        //if (collision.gameObject.CompareTag("Objects") && QuestManager.Instance.check != null)
+        //{
+        //    //QuestManager.Instance.Complete();
+        //    QuestManager.Instance.check.SetActive(false);
+        //}
     }
     //private void OnCollisionExit(Collision collision)
     //{
